@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Updating a post', type: :feature do
   scenario 'Updating with valid input' do
     user = FactoryBot.create(:user)
-    post = FactoryBot.create(:post)
+    post = FactoryBot.create(:post, user: user)
     sign_in_as(user)
     visit post_path(post)
     click_on 'Edit this post'
@@ -15,7 +15,7 @@ RSpec.describe 'Updating a post', type: :feature do
 
   scenario 'Updating with invalid input' do
     user = FactoryBot.create(:user)
-    post = FactoryBot.create(:post)
+    post = FactoryBot.create(:post, user: user)
     sign_in_as(user)
     visit post_path(post)
     click_on 'Edit this post'

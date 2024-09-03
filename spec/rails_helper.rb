@@ -39,6 +39,8 @@ RSpec.configure do |config|
     Rails.root.join('spec/fixtures')
   ]
 
+
+
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
@@ -66,7 +68,16 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
-  config.include Warden::Test::Helpers
+  config.include Warden::Test::Helpers, type: :feature
   config.include Devise::Test::IntegrationHelpers, type: :feature
   config.include Helpers, type: :feature
+  config.include FactoryBot::Syntax::Methods
+
+
+  # Ensure Warden's test mode is reverted after each test
+  config.after(:each) do
+    Warden.test_reset!
+  end
+
+  Warden.test_mode!
 end
