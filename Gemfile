@@ -46,6 +46,7 @@ group :development, :test do
 
   gem "rspec-rails"
   gem "capybara"
+  gem "webdrivers"
   gem "factory_bot_rails"
   gem "guard"
   gem "guard-rspec"
