@@ -107,7 +107,8 @@ h6 {
   padding: 1rem;
 }
 
-.single__post__container {
+.single__post__container,
+.new__post__form {
   background-color: white;
   box-shadow: 0 0 5px rgb(191, 191, 191);
   border-radius: 1rem;
@@ -115,7 +116,9 @@ h6 {
   padding: 1rem;
 }
 
-.single__post__title {
+.single__post__title,
+.new__post__title__label,
+.new__post__body__label {
   font-style: italic;
   border-radius: 1rem;
   padding: 0 0.5rem;
@@ -126,4 +129,22 @@ h6 {
   padding: 0.5rem;
   padding-bottom: 2rem;
   border-radius: 0.5rem;
+}
+
+.new__post__title__input,
+.new__post__body__input {
+  border-radius: 0.5rem;
+  background-color: rgb(246, 251, 255);
+  box-shadow: 0 0 5px rgb(191, 191, 191);
+  border: none;
+  padding: 0 0.5rem;
+}
+
+.new__post__button {
+  margin: 1rem;
+  margin-bottom: 0;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: rgb(64, 64, 233);
+  color: white;
 }
