@@ -1,6 +1,7 @@
-<div id="<%= dom_id post %>">
-  <div class="single__post__container">
-    <h2 class="single__post__title"><%= post.title %></h2>
+<div id="<%= dom_id post %>" class="column">
+  <div class="single__post__container card p-4">
+    <h2 class="single__post__title title is-4 mb-2"><%= post.title %></h2>
     <p class="single__post__body"><%= post.body %></p>
+    <p><%= link_to "Show this post", post %>  </p>
   </div>
 </div>

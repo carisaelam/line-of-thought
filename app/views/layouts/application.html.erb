@@ -16,13 +16,17 @@
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
-    <%= stylesheet_link_tag "application", "data-turbo-track": Rails.env.production? ? "reload" : "" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": Rails.env.production? ? "reload" : "", media: "all" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+    
+    <link rel="stylesheet" href="app/assets/stylesheets/custom.css">
+
     <%= hotwire_livereload_tags if Rails.env.development? %>
   </head>
 
   <body>
-    <div class="body__container">
+    <div class="body__container container">
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
       <%= render '/shared/header' %>

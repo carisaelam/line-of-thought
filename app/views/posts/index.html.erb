@@ -1,16 +1,15 @@
 <p style="color: green"><%= notice %></p>
 
-<% content_for :title, "Posts" %>
 
-<h1>Posts</h1>
 
-<div id="posts">
-  <% @posts.each do |post| %>
-    <%= render post %>
-    <p>
-      <%= link_to "Show this post", post %>
-    </p>
-  <% end %>
-</div>
+<section class="section">
+  <% content_for :title, "Posts" %>
+  <h1 class="title is-3">Posts</h1>
+  <div id="posts" class="columns">
+    <% @posts.each do |post| %>
+      <%= render post %>
+    <% end %>
+  </div>
+  <%= link_to "New post", new_post_path %>
+</section>
 
-<%= link_to "New post", new_post_path %>
