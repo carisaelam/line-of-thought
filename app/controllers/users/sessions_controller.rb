@@ -4,16 +4,24 @@ class Users::SessionsController < Devise::SessionsController
   before_action :configure_sign_in_params, only: [ :create ]
 
 
-  def new
-    super
+  # def new
+  #   super
+  # end
+
+  # def create
+  #   super
+  # end
+
+  # def destroy
+  #   super
+  # end
+
+  def after_sign_out_path_for(_resource_or_scope)
+    new_user_session_path
   end
 
-  def create
-    super
-  end
-
-  def destroy
-    super
+  def after_sign_in_path_for(resource_or_scope)
+    stored_location_for(resource_or_scope) || root_path
   end
 
   # protected

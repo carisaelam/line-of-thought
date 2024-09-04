@@ -1,11 +1,12 @@
 <section class="section">
   <div>
-    <h1 class="title is-3"><%= @user.username %></h1>
+    <h1 class="title is-3"><%= @user.full_name %></h1>
     <p>
       <strong>Email:</strong>
       <%= @user.email %>
     </p>
     <%= render @user.posts %>
+    <img src=<%= @user.avatar_url %> alt="avatar" class="avatar__image" >
     <%= link_to "Home", root_path %>
   </div>
 </section>

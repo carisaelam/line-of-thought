@@ -40,3 +40,7 @@ h6 {
 a:hover {
   color: purple;
 }
+
+.avatar__image {
+  border-radius: 100%;
+}
