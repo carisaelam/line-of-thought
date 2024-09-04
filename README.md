@@ -1,4 +1,4 @@
-![Line of Thought Logo](/public/default.png)
+![Line of Thought Logo](/app/assets/images/logo.png)
 
 ## Line of Thought: A Minimalist Social Media App
 
