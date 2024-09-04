@@ -72,5 +72,5 @@ gem "devise", "~> 4.9"
 gem "hotwire-livereload", "~> 1.4", group: :development
 
 gem "omniauth"
-gem "omniauth-google-oauth2"
+gem "omniauth-github", "~> 2.0.0 "
 gem "omniauth-rails_csrf_protection", "~> 1.0"
