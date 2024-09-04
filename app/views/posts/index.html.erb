@@ -1,19 +1,24 @@
 
 <section class="section">
-  <p style="color: green"><%= notice %></p>
-
   <% content_for :title, "Posts" %>
   <h1 class="title is-3 mb-0">Posts</h1>
+
   <div id="posts" class="section mb-2">
-    <% @posts.each do |post| %>
-      <div class="mb-6">
-        <%= render post %>
-        <%= link_to "Show this post", post_path(post), class: "p-4 m-0" %>
-      </div> 
+    <% if @posts.any? %>  
+      <% @posts.each do |post| %>
+        
+          <div class="card">
+            <a href="<%= post_path(post) %>" class="has-text-black"><%= render post %></a>
+          </div>
+         
+      <% end %>
+    <% else %>
+      <p class="is-italic">No posts yet</p>
     <% end %>
   </div>
-  <button class="button"><%= link_to "New post", new_post_path %></button>
-  <%= button_to "Sign Out", destroy_user_session_path, method: :delete %>
+
+  <%= link_to "New post", new_post_path, class: "button is-link" %>
+  <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: 'p-4 is-hovered' %>
 </section>
 
 
