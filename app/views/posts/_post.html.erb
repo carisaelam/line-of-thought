@@ -1,5 +1,6 @@
   
-  <div class="single__post__container p-4 m-2">
-    <h2 class="single__post__body title is-5 is-italic"><%= post.body %></h2>    
-    <p class="is-size-7">by: <%= link_to post.user.username, user_path(post.user) %></p>
+  <div class=" p-4 m-2">
+    <h2 class="single__post__body title is-5 is-italic mb-1"><%= post.body %></h2>    
+    <p class="is-size-6 mb-3">by: <%= link_to post.user.username, user_path(post.user) %></p>
+    <p class="is-size-7"><%= post.created_at.strftime("%b %d, %Y at %I:%M %p") %> </p>
   </div>

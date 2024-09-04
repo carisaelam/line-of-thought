@@ -33,6 +33,10 @@ h6 {
   transition: 0.15s;
 }
 
-.post__card {
-  background-color: yellow;
+.card:hover h2 {
+  color: blue;
+}
+
+a:hover {
+  color: purple;
 }
