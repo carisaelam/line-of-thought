@@ -1,5 +1,4 @@
   <div class="single__post__container card p-4 m-2">
-    <p> <%= post.user.username%> </p>
-    <h2 class="single__post__title title is-4 is-italic"><%= post.title %></h2>
-    <p class="single__post__body"><%= post.body %></p>
+    <p class="single__post__body is-size-4 is-bold is-italic"><%= post.body %></p>
+    <p class="is-size-7">by: <%= link_to post.user.username, user_path(post.user) %></p>
   </div>
