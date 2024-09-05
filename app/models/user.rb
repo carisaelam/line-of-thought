@@ -6,7 +6,8 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
 
-  after_initialize :set_default_avatar_url, if: :new_record?
+  before_create :set_default_avatar_url
+  # after_initialize :set_default_avatar_url, if: :new_record?
 
   def self.from_omniauth(auth)
     email = auth.info.email || "default@example.com"  # Default email or handle missing email
@@ -20,7 +21,9 @@ class User < ApplicationRecord
 
   private
 
+
+
   def set_default_avatar_url
-    self.avatar_url ||= "https://picsum.photos/500"
+    self.avatar_url ||= "https://picsum.photos/200?random=#{SecureRandom.hex(10)}"
   end
 end
