@@ -1,17 +1,16 @@
-<div id="<%= dom_id comment %>">
+<div id="<%= dom_id comment %>" class="box p-4">
   <p>
-    <strong>Body:</strong>
     <%= comment.body %>
   </p>
 
   <p>
-    <strong>User:</strong>
-    <%= comment.user_id %>
-  </p>
+    <strong>Post Author:</strong>
 
-  <p>
+    <%= link_to 'Post Author', user_path(comment.post.user_id) %>
+
     <strong>Post:</strong>
-    <%= comment.post_id %>
+    <%= link_to 'View Post', post_path(comment.post_id) %>
+
   </p>
 
 </div>

@@ -6,6 +6,7 @@
       <%= @user.email %>
     </p>
     <%= render @user.posts %>
+    <%= render @user.comments %>
     <%= link_to "Edit Profile", edit_user_registration_path(@user) %>
     <%= link_to "Home", root_path %>
   </div>
