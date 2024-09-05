@@ -37,10 +37,6 @@ h6 {
   color: blue;
 }
 
-a:hover {
-  color: purple;
-}
-
 .avatar__image {
   border-radius: 100%;
   width: 5rem;
