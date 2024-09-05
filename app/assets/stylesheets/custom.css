@@ -39,12 +39,12 @@ h6 {
 
 .avatar__image {
   border-radius: 100%;
-  width: 5rem;
+  max-width: calc(clamp(2rem, 2rem + 2vw, 5rem));
 }
 
 .avatar__image--comment {
   border-radius: 100%;
-  width: 2rem;
+  width: calc(min(24px, 2rem));
 }
 
 #navbar {
@@ -62,4 +62,8 @@ h6 {
 
 #navbar div {
   width: clamp(10rem, 50%, 40rem);
+}
+
+.post__card {
+  width: calc(max(50%, 80rem));
 }

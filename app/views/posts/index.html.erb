@@ -1,21 +1,18 @@
 
-<section class="section">
+<section class="section p-6 m-3 is-flex is-align-items-center is-flex-direction-column post__container">
   <% content_for :title, "Posts" %>
-  <h1 class="title is-3 mb-0">Posts</h1>
+  <h1 class="title mb-5">Posts</h1>
 
-  <div id="posts" class="section mb-2">
+  
     <% if @posts.any? %>  
       <% @posts.reverse.each do |post| %>
-        
-          <div class="card single__post__container">
+          <div class="card post__card">
             <a href="<%= post_path(post) %>" class="has-text-black"><%= render post %></a>
           </div>
-         
       <% end %>
     <% else %>
       <p class="is-italic">No posts yet</p>
     <% end %>
-  </div>
 
   <%= link_to "New post", new_post_path, class: "button is-link" %>
   <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: 'p-4 is-hovered' %>

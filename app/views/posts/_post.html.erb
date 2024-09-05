@@ -1,12 +1,12 @@
   
-  <div class="p-4 m-2 container is-flex">
-    <div class="pr-6"> 
-      <img src="<%= post.user.avatar_url %>" alt="avatar" class="avatar__image">
+  <div class="p-4 m-2 container columns is-mobile is-flex is-align-items-center">
+    <div class="pr-3 column is-one-fifth"> 
+      <img src="<%= post.user.avatar_url %>" alt="avatar" class="avatar__image is-24x24">
     </div>
-    <div>
-      <h2 class="single__post__body title is-5 is-italic mb-1"><%= post.body %></h2>
-      <p class="is-size-6 mb-3">by: <%= link_to post.user.full_name, user_path(post.user) %></p>
-      <p class="is-size-7"><%= post.created_at.strftime("%b %d, %Y at %I:%M %p") %> </p>
+    <div class="column">
+      <h2 class="single__post__body title is-size-3 is-size-6-mobile is-italic mb-1"><%= post.body %></h2>
+      <p class="is-size-7 mb-3">by: <%= link_to post.user.full_name, user_path(post.user) %></p>
+      <p class="is-size-7 is-hidden-mobile"><%= post.created_at.strftime("%b %d, %Y at %I:%M %p") %> </p>
       <div class="is-size-7"><a href=<%= post_path(post)%>>Comments: <%= post.comments.count %></a></div>
     </div>   
   </div>
