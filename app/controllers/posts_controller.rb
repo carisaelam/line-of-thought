@@ -5,10 +5,15 @@ class PostsController < ApplicationController
   # GET /posts or /posts.json
   def index
     @posts = Post.all
+    @comments = Comment.all
+    @user = current_user
   end
 
   # GET /posts/1 or /posts/1.json
   def show
+    @post = Post.find(params[:id])
+    @comment = @post.comments.build
+    @comments = @post.comments
   end
 
   # GET /posts/new

@@ -7,5 +7,38 @@
       <h2 class="single__post__body title is-5 is-italic mb-1"><%= post.body %></h2>
       <p class="is-size-6 mb-3">by: <%= link_to post.user.full_name, user_path(post.user) %></p>
       <p class="is-size-7"><%= post.created_at.strftime("%b %d, %Y at %I:%M %p") %> </p>
+    </div>   
+  </div>
+
+   <div class="box">
+      <% if post.comments.present? %>
+        <% post.comments.each do |comment| %>
+          <% if comment.user %>
+            <div class="is-flex is-justify-content-left is-align-items-center">
+              <img src="<%= comment.user.avatar_url %>" alt="avatar" class="avatar__image--comment mr-4">
+              <p class='is-size-7'><%= comment.user.full_name %></p>
+            </div>       
+          <% end %>
+           <p><%= comment.body %></p>
+        <% end %>
+      <% else %>
+        <p>No comments yet. Be the first to comment!</p>
+      <% end %>
     </div>
+
+<%# Comment Section %>
+  <div>
+    <% if @post && @comment %>
+      <%= form_with model: [@post, @comment], local: true do |form| %>
+        <%= form.label :body, hidden: true %>
+        <%= form.text_area :body, class: "textarea mb-1 p-3", rows: "2"  %>
+
+        <%= form.submit "Add Comment" %>
+      <% end %>
+    <% else %>
+      <p>Post or comment not available.</p>
+    <% end %>
+
+    
+
   </div>

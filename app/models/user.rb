@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [ :github ]
 
   has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   before_create :set_default_avatar_url
   # after_initialize :set_default_avatar_url, if: :new_record?
