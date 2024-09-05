@@ -41,3 +41,20 @@ h6 {
   border-radius: 100%;
   width: 5rem;
 }
+
+#navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 100%;
+  max-height: calc(6rem, 6rem + 5%, 8rem);
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 100;
+}
+
+#navbar div {
+  width: clamp(10rem, 50%, 40rem);
+}

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
-  <head>
+<html lang="en" data-theme="light" >
     <title><%= content_for(:title) || "Line Of Thought" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -27,11 +26,9 @@
   </head>
 
   <body>
-    <div class="body__container container">
       <p class="notice has-text-success"><%= notice %></p>
       <p class="alert"><%= alert %></p>
       <%= render '/shared/header' %>
-      <%= yield %>
-    </div>
+      <div class="main__content"><%= yield %></div>
   </body>
 </html>
