@@ -65,9 +65,20 @@ h6 {
 }
 
 .post__card {
-  width: calc(max(50%, 80rem));
+  width: calc(max(50%, 45rem));
 }
 
 .fa-solid .fa-heart {
   color: pink;
+}
+
+.icon:hover {
+  cursor: pointer;
+  color: blue;
+  transform: scale(1.02);
+  transition: 0s;
+}
+
+.is-not-bulma-a {
+  color: inherit;
 }

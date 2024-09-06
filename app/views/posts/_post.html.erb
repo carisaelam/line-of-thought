@@ -6,7 +6,7 @@
   
   <div class="column">
 
-    <h2 class="single__post__body title is-size-3 is-size-6-mobile is-italic mb-1">
+    <h2 class="single__post__body title is-size-4 is-size-6-mobile is-italic mb-1">
       <%= post.body %>
     </h2>
 
@@ -18,13 +18,23 @@
       <%= post.created_at.strftime("%b %d, %Y at %I:%M %p") %> 
     </p>
 
-    <div class="is-size-7">
-      <a href=<%= post_path(post)%>>Comments: <%= post.comments.count %></a>
-    </div>
-
-    <%= turbo_frame_tag dom_id(post, :like_buttons) do %>
-      <%= render partial: 'posts/like_buttons', locals: { post: post } %>
-    <% end %>
+  <div class="is-flex">
+    <%# Comment Button %>
+      <div class="is-flex is-align-items-center is-flex-direction-row mr-4">
+        <div class="icon">
+          <a href=<%= post_path(post)%> class="is-not-bulma-a">
+            <i class="fa-regular fa-comment"></i>
+          </a>
+        </div>
+        <div class="is-size-7 pl-1">
+          <%= post.comments.count %>
+        </div>
+      </div>
+    <%# Like Button %>
+      <%= turbo_frame_tag dom_id(post, :like_buttons) do %>
+        <%= render partial: 'posts/like_buttons', locals: { post: post } %>
+      <% end %>
+  </div>
 
   </div> 
 

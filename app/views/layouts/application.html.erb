@@ -26,9 +26,11 @@
   </head>
 
   <body>
-      <p class="notice has-text-success"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-      <%= render '/shared/header' %>
-      <%= yield %>
+      <section class="section main__section">
+        <p class="notice has-text-success"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+        <%= render '/shared/header' %>
+        <%= yield %>
+      </section>
   </body>
 </html>
