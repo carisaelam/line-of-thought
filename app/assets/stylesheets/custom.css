@@ -67,3 +67,7 @@ h6 {
 .post__card {
   width: calc(max(50%, 80rem));
 }
+
+.fa-solid .fa-heart {
+  color: pink;
+}
