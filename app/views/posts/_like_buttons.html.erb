@@ -1,0 +1,15 @@
+<div class='is-flex is-flex-direction-row'>
+  <div class='pr-2'>
+    <% if user_signed_in? %>
+      <% if post.liked?(current_user) %>
+        <% existing_like = post.likes.find_by(user: current_user) %>
+        <%= button_to "Unlike", post_like_path(post, existing_like), method: :delete, class: 'button is-danger is-small', data: { turbo_frame: dom_id(post, :like_buttons) } %>
+      <% else %>
+        <%= button_to "Like", post_likes_path(post), method: :post, class: 'button is-link is-small', data: { turbo_frame: dom_id(post, :like_buttons) } %>
+      <% end %>
+    <% end %>
+  </div>
+  <div id="<%= dom_id(post, :like_count) %>">
+    <%= post.likes.count %>
+  </div>
+</div>

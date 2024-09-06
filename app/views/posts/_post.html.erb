@@ -1,51 +1,31 @@
+<div class="p-4 m-2 container columns is-mobile is-flex is-align-items-center">
   
-  <div class="p-4 m-2 container columns is-mobile is-flex is-align-items-center">
-   
-    <div class="pr-3 column is-one-fifth"> 
-      <img src="<%= post.user.avatar_url %>" alt="avatar" class="avatar__image is-24x24">
+  <div class="pr-3 column is-one-fifth"> 
+    <img src="<%= post.user.avatar_url %>" alt="avatar" class="avatar__image is-24x24">
+  </div>
+  
+  <div class="column">
+
+    <h2 class="single__post__body title is-size-3 is-size-6-mobile is-italic mb-1">
+      <%= post.body %>
+    </h2>
+
+    <p class="is-size-7 mb-3">
+      by: <%= link_to post.user.full_name, user_path(post.user) %>
+    </p>
+
+    <p class="is-size-7 is-hidden-mobile">
+      <%= post.created_at.strftime("%b %d, %Y at %I:%M %p") %> 
+    </p>
+
+    <div class="is-size-7">
+      <a href=<%= post_path(post)%>>Comments: <%= post.comments.count %></a>
     </div>
-    
-    <div class="column">
 
-      <h2 class="single__post__body title is-size-3 is-size-6-mobile is-italic mb-1">
-        <%= post.body %>
-      </h2>
+    <%= turbo_frame_tag dom_id(post, :like_buttons) do %>
+      <%= render partial: 'posts/like_buttons', locals: { post: post } %>
+    <% end %>
 
-      <p class="is-size-7 mb-3">
-        by: <%= link_to post.user.full_name, user_path(post.user) %>
-      </p>
+  </div> 
 
-      <p class="is-size-7 is-hidden-mobile">
-        <%= post.created_at.strftime("%b %d, %Y at %I:%M %p") %> 
-      </p>
-
-      <div class="is-size-7">
-        <a href=<%= post_path(post)%>>Comments: <%= post.comments.count %></a>
-      </div>
-
-      
-      <div class='is-flex is-flex-direction-row'>
-        <div class='pr-2'>
-          <% if user_signed_in? %>
-            <% if post.liked?(current_user) %>
-              <%= button_to "Unlike", post_like_path(post), method: :delete, class: 'button is-danger is-small'%>
-            <% else %>
-              <%= button_to "Like", post_likes_path(post), method: :post, class: 'button is-link is-small'%>
-            <% end %>
-          <% end %>
-        </div>
-        <div id="like-count">
-          <%= post.likes.count %>
-        </div>
-      </div>
-    
-
-    </div> 
-
-  </div>
-
-  
-
-    
-
-  </div>
+</div>

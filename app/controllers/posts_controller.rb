@@ -12,6 +12,7 @@ class PostsController < ApplicationController
   # GET /posts/1 or /posts/1.json
   def show
     @post = Post.find(params[:id])
+    @like = @post.likes.find_by(user: current_user)
     @comment = @post.comments.build
     @comments = @post.comments
   end
@@ -55,19 +56,38 @@ class PostsController < ApplicationController
 
   # DELETE /posts/1 or /posts/1.json
   def destroy
-    @post.destroy!
+    @post = Post.find(params[:id])
+    like = @post.likes.find_by(user: current_user)
+    like.destroy if like
 
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: "Post was successfully destroyed." }
-      format.json { head :no_content }
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.replace(dom_id(@post, :like_buttons), partial: "posts/like_buttons", locals: { post: @post }),
+          turbo_stream.replace("like-count", partial: "posts/like_count", locals: { post: @post })
+        ]
+      end
     end
   end
 
+
+
   def like
-    @post = Post.all.find(params[:id])
-    Like.create(user_id: current_user.id, post_id: @post.id)
-    redirect_to post_path(@post)
+    @post = Post.find(params[:id])
+    existing_like = @post.likes.find_by(user: current_user)
+
+    if existing_like
+      respond_to do |format|
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@post, partial: "posts/like_buttons", locals: { post: @post }) }
+      end
+    else
+      Like.create(user: current_user, post: @post)
+      respond_to do |format|
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@post, partial: "posts/like_buttons", locals: { post: @post }) }
+      end
+    end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
