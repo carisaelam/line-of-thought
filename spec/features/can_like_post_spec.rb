@@ -11,7 +11,7 @@ RSpec.describe 'Users can like posts' do
 
       click_on 'Like'
 
-      expect(post.likes.count).to eql("#{(initial_like_total + 1).to_i}")
+      expect(post.likes.count).to eql(initial_like_total + 1)
       puts post.likes.count
   end
 end
