@@ -1,14 +1,44 @@
   
   <div class="p-4 m-2 container columns is-mobile is-flex is-align-items-center">
+   
     <div class="pr-3 column is-one-fifth"> 
       <img src="<%= post.user.avatar_url %>" alt="avatar" class="avatar__image is-24x24">
     </div>
+    
     <div class="column">
-      <h2 class="single__post__body title is-size-3 is-size-6-mobile is-italic mb-1"><%= post.body %></h2>
-      <p class="is-size-7 mb-3">by: <%= link_to post.user.full_name, user_path(post.user) %></p>
-      <p class="is-size-7 is-hidden-mobile"><%= post.created_at.strftime("%b %d, %Y at %I:%M %p") %> </p>
-      <div class="is-size-7"><a href=<%= post_path(post)%>>Comments: <%= post.comments.count %></a></div>
-    </div>   
+
+      <h2 class="single__post__body title is-size-3 is-size-6-mobile is-italic mb-1">
+        <%= post.body %>
+      </h2>
+
+      <p class="is-size-7 mb-3">
+        by: <%= link_to post.user.full_name, user_path(post.user) %>
+      </p>
+
+      <p class="is-size-7 is-hidden-mobile">
+        <%= post.created_at.strftime("%b %d, %Y at %I:%M %p") %> 
+      </p>
+
+      <div class="is-size-7">
+        <a href=<%= post_path(post)%>>Comments: <%= post.comments.count %></a>
+      </div>
+
+      <div>
+          <% if user_signed_in? %>
+            <% if current_user.liked_posts.include?(post) %>
+              <%= button_to 'Unlike', post_like_path(post, post.likes.find_by(user: current_user)), method: :delete, class: "button is-danger" %>
+            <% else %>
+              <%= button_to 'Like', post_likes_path(post), method: :post, class: "button is-primary" %>
+            <% end %>
+          <% end %>
+
+            <div id="like-count">
+              <%= post.likes.count %> Likes
+            </div>
+      </div> 
+
+    </div> 
+
   </div>
 
   

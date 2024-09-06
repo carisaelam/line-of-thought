@@ -1,5 +1,6 @@
 <section class="section">
   <%= render @post %>
+  
     <div class="container is-flex is-justify-content-center	">
       <%= link_to "Edit this post", edit_post_path(@post) %> |
       <%= link_to "Back to posts", posts_path %> |
@@ -26,6 +27,7 @@
   <div>
     <% if @post && @comment %>
       <%= form_with model: [@post, @comment], local: true do |form| %>
+
         <%= form.label :body, hidden: true %>
         <%= form.text_area :body, class: "textarea mb-1 p-3", rows: "2"  %>
 
@@ -34,4 +36,8 @@
     <% else %>
       <p>Post or comment not available.</p>
     <% end %>
+  </div>
+
+
+
 </section>

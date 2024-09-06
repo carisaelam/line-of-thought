@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :liked_posts, through: :likes, source: :post
 
   before_create :set_default_avatar_url
   # after_initialize :set_default_avatar_url, if: :new_record?
