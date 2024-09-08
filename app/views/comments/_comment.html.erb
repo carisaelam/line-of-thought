@@ -6,7 +6,7 @@
   <p>
     <strong>Post Author:</strong>
 
-    <%= link_to 'Post Author', user_path(comment.post.user_id) %>
+    <%= link_to comment.post.user.full_name, user_path(comment.post.user_id) %>
 
     <strong>Post:</strong>
     <%= link_to 'View Post', post_path(comment.post_id) %>
@@ -14,3 +14,6 @@
   </p>
 
 </div>
+
+
+
