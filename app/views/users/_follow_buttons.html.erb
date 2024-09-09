@@ -1,0 +1,7 @@
+<div class="mt-4">
+  <% if current_user.following?(@user) %>
+    <%= button_to 'Unfollow', user_follow_path(@user.id), method: :delete, class: 'button is-danger' %>
+  <% else %>
+    <%= button_to 'Follow', user_follow_path(@user.id), method: :post, class: 'button is-link' %>
+  <% end %>
+</div>
