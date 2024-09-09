@@ -36,6 +36,9 @@ class User < ApplicationRecord
     self.followees.destroy(followee)
   end
 
+  def following?(followee)
+    self.followees.include?(followee)
+  end
   private
 
 

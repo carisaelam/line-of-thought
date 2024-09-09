@@ -8,9 +8,12 @@ Rails.application.routes.draw do
     omniauth_callbacks: "users/omniauth_callbacks"
   }
 
-  resources :users, only: [ :show, :update, :edit ]
+  resources :users, only: [ :show, :update, :edit ] do
+    resource :follow, only: [ :create, :destroy ], controller: "follows"
+  end
+
   resources :posts do
-    resources :likes, only: [ :create, :destroy ]
+    resources :likes, only: [ :create, :destroy ], controller: "likes"
     resources :comments
   end
 end
