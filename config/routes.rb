@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root "posts#index"
   get "/post/:id/like", to: "posts#like", as: "like"
+  get "/users/:user_id/followers", to: "follows#followers", as: "followers"
+  get "/users/:user_id/followees", to: "follows#followees", as: "followees"
 
   devise_for :users, controllers: {
     registrations: "users/registrations",

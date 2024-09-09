@@ -5,6 +5,14 @@
       <%= image_tag @user.avatar_url, class: 'avatar__image mb-4' %>
       <h1 class="title is-3"><%= @user.full_name %></h1>
       <%= @user.email %>
+
+      <div>
+        <%= link_to "Followers: ", followers_path(@user)%> 
+        <%= @user.followers.count %> | 
+        <%= link_to "Following: ", followees_path(@user) %>    
+        <%= @user.followees.count %>
+      </div>
+
       <% unless @user == current_user %>
         <%= render 'follow_buttons' %>    
       <% end %>
@@ -20,12 +28,6 @@
     <div class="section box">
       <h3 class="title is-4">Comments</h3>
       <%= render @user.comments %>
-    </div>
-   
-   
-    <div class="section box">
-      <h3 class="title is-4">Follows</h3>
-      <%= render 'followings' %>
     </div>
   
 

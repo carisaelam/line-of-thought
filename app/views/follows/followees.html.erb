@@ -1,0 +1,16 @@
+<div class="box">
+  <div class="mb-6">
+    <h4 class="title is-5">Following: </h4>
+
+    <% @followees.each do |followee| %>
+      <a href="<%= user_path(followee.id) %>">
+        <div class="is-flex mb-2">
+          <%= image_tag followee.avatar_url, class: 'avatar__image--comment mr-2' %>
+          <%= followee.full_name %>
+        </div>
+      </a>
+    <% end %>
+    
+  </div>
+</div>
+

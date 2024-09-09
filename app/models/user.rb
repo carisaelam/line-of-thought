@@ -41,6 +41,7 @@ class User < ApplicationRecord
   def following?(followee)
     self.followees.include?(followee)
   end
+
   private
 
 
