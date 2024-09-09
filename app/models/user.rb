@@ -28,6 +28,14 @@ class User < ApplicationRecord
     end
   end
 
+  def follow(followee)
+    self.followees << followee
+  end
+
+  def unfollow(followee)
+    self.followees.destroy(followee)
+  end
+
   private
 
 
