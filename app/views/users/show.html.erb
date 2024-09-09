@@ -5,7 +5,9 @@
       <%= image_tag @user.avatar_url, class: 'avatar__image mb-4' %>
       <h1 class="title is-3"><%= @user.full_name %></h1>
       <%= @user.email %>
-      <%= render 'follow_buttons' %>    
+      <% unless @user == current_user %>
+        <%= render 'follow_buttons' %>    
+      <% end %>
     </div>
 
     
