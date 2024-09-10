@@ -14,12 +14,15 @@
       </div>
 
       <% unless @user == current_user %>
-        <%= render 'follow_buttons' %>    
+        <%= turbo_frame_tag dom_id(@user, :follow_buttons) do %>
+          <%= render partial: 'users/follow_buttons', locals: { user: @user} %>
+        <% end %>   
       <% end %>
     </div>
 
 
-    
+ 
+   
     
 
     

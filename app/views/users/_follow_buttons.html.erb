@@ -1,7 +1,19 @@
 <div class="mt-4">
   <% if current_user.following?(@user) %>
-    <%= button_to 'Unfollow', user_follow_path(@user.id), method: :delete, class: 'button is-danger' %>
+
+
+    <%= button_to user_follow_path(@user.id), method: :delete, class: 'button is-danger', data: { turbo_frame: dom_id(@user, :follow_buttons) } do %>
+      <p>Unfollow</p>
+    <% end %>
+
+
   <% else %>
-    <%= button_to 'Follow', user_follow_path(@user.id), method: :post, class: 'button is-link' %>
+
+
+    <%= button_to user_follow_path(@user.id), method: :post, class: 'button is-link', data: { turbo_frame: dom_id(@user, :follow_buttons) } do %>
+      <p>Follow</p>
+    <% end %>
+
+
   <% end %>
 </div>
