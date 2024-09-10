@@ -1,0 +1,22 @@
+<section class="is-flex is-flex-direction-column is-justify-content-center is-align-items-center">
+  <h1 class="title">All Users</h1>
+   <% @users.sort_by(&:full_name).each do |user| %>
+
+    <div class="box is-flex is-align-items-center is-justify-content-space-between user__card">
+      <a href="<%= user_path(user) %>">
+        <div class="is-flex">
+          <%= image_tag user.avatar_url, class: 'avatar__image--comment mr-3' %>
+          <%= user.full_name %>
+        </div>
+      </a>
+      <div class="mt-4">
+        <% if current_user.following?(user) %>
+          <%= button_to 'Unfollow', user_follow_path(user.id), method: :delete, class: 'button is-danger is-small' %>
+        <% else %>
+          <%= button_to 'Follow', user_follow_path(user.id), method: :post, class: 'button is-link is-small' %>
+        <% end %>
+      </div>
+    </div>
+    
+  <% end %>
+</section>

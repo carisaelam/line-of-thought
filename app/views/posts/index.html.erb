@@ -3,6 +3,7 @@
   <% content_for :title, "Posts" %>
   <h1 class="title">All Posts</h1>
   <h3 class="mb-5"><%= link_to 'See users you follow', root_path %></h3>
+  <h3 class="mb-5"><%= link_to 'See all users', users_path %></h3>
 
   
     <% if @posts.any? %>  

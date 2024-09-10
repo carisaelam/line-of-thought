@@ -51,7 +51,7 @@ h6 {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 100%;
+  min-width: 100vw;
   max-height: calc(6rem, 6rem + 5%, 8rem);
   padding: 1rem;
   position: sticky;
@@ -66,6 +66,10 @@ h6 {
 
 .post__card {
   width: calc(max(50%, 45rem));
+}
+
+.user__card {
+  width: calc(max(50%, 30rem));
 }
 
 .fa-solid .fa-heart {
