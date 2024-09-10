@@ -88,6 +88,13 @@ class PostsController < ApplicationController
     end
   end
 
+  def following
+    @user = current_user
+    @posts = Post.all.where(user: current_user)
+                            .or(Post.where(user_id: current_user.followees.pluck(:id)))
+    @comments = Comment.all
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

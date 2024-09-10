@@ -5,6 +5,6 @@ RSpec.describe 'Home page', type: :feature do
     user = FactoryBot.create(:user)
     sign_in_as(user)
     visit root_path
-    expect(page).to have_content('Posts')
+    expect(page).to have_content('Following')
   end
 end

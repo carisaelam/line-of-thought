@@ -12,7 +12,7 @@ end
 (1..30).each do |id|
   Post.create!(
     user_id: User.pluck(:id).sample,
-    body: Faker::Company.catch_phrase,
+    body: Faker::Hipster.sentence(word_count: rand(5-10)),
   )
 end
 
