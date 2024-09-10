@@ -1,0 +1,6 @@
+<div id="<%= dom_id(@user, :follow_counts) %>">
+  <%= link_to "Followers: ", followers_path(@user) %> <%= @user.followers.count %> |
+  <%= link_to "Following: ", followees_path(@user) %> <%= @user.followees.count %>
+</div>
+
+

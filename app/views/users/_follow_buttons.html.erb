@@ -1,19 +1,12 @@
-<div class="mt-4">
+<div id="<%= dom_id(@user, :follow_buttons) %>" class="mt-4">
+
   <% if current_user.following?(@user) %>
-
-
-    <%= button_to user_follow_path(@user.id), method: :delete, class: 'button is-danger', data: { turbo_frame: dom_id(@user, :follow_buttons) } do %>
-      <p>Unfollow</p>
+    <%= button_to user_follow_path(@user.id), method: :delete, class: 'button is-danger' do %>
+      Unfollow
     <% end %>
-
-
   <% else %>
-
-
-    <%= button_to user_follow_path(@user.id), method: :post, class: 'button is-link', data: { turbo_frame: dom_id(@user, :follow_buttons) } do %>
-      <p>Follow</p>
+    <%= button_to user_follow_path(@user.id), method: :post, class: 'button is-link' do %>
+      Follow
     <% end %>
-
-
   <% end %>
 </div>

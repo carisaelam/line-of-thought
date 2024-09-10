@@ -7,10 +7,13 @@
       <%= @user.email %>
 
       <div>
-        <%= link_to "Followers: ", followers_path(@user)%> 
-        <%= @user.followers.count %> | 
-        <%= link_to "Following: ", followees_path(@user) %>    
-        <%= @user.followees.count %>
+        <%= turbo_frame_tag dom_id(@user, :follow_counts) do %>
+          <div>
+            <%= link_to "Followers: ", followers_path(@user) %> <%= @user.followers.count %> |
+            <%= link_to "Following: ", followees_path(@user) %> <%= @user.followees.count %>
+          </div>
+        <% end %>
+
       </div>
 
       <% unless @user == current_user %>
