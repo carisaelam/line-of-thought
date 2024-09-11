@@ -1,9 +1,13 @@
 
 <section class="section p-6 m-3 is-flex is-align-items-center is-flex-direction-column post__container">
   <% content_for :title, "Posts" %>
-  <h1 class="title">All Posts</h1>
-  <h3 class="mb-5"><%= link_to 'See users you follow', root_path %></h3>
-  <h3 class="mb-5"><%= link_to 'See all users', users_path %></h3>
+  <h1 class="title mb-1">All Posts</h1>
+  <p class="is-size-7 mb-5">Discover someone new!</p>
+
+  <div class="is-flex buttons are-small">
+    <h3 class="mb-5 px-2 button"><%= link_to 'Your feed', root_path %></h3> 
+    <h3 class="mb-5 px-2 button"><%= link_to 'All users', users_path %></h3>
+  </div>
 
   
     <% if @posts.any? %>  
