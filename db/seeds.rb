@@ -16,7 +16,7 @@ end
   )
 end
 
-(1..50).each do |id|
+(30..80).each do |id|
   Comment.create!(
     user_id: User.pluck(:id).sample,
     post_id: Post.pluck(:id).sample,

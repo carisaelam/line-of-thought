@@ -5,6 +5,6 @@ RSpec.describe 'Home page', type: :feature do
     user = FactoryBot.create(:user)
     sign_in_as(user)
     visit root_path
-    expect(page).to have_content('Your Feed')
+    expect(page).to have_content('All Posts')
   end
 end

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  root "posts#following"
+  root "posts#index"
 
-  # get "/users/:user_id/following_posts", to: "posts#following", as: "following_posts"
+  get "/users/:user_id/following_posts", to: "posts#following", as: "following_posts"
   get "/post/:id/like", to: "posts#like", as: "like"
   get "/users/:user_id/followers", to: "follows#followers", as: "followers"
   get "/users/:user_id/followees", to: "follows#followees", as: "followees"

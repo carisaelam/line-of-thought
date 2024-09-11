@@ -4,12 +4,12 @@
 
     <div class="box is-flex is-align-items-center is-justify-content-space-between user__card">
       <a href="<%= user_path(user) %>">
-        <div class="is-flex">
-          <%= image_tag user.avatar_url, class: 'avatar__image--comment mr-3' %>
+        <div class="is-flex is-align-items-center">
+          <%= image_tag user.avatar_url, class: 'avatar__image--comment mr-3 all__users' %>
           <%= user.full_name %>
         </div>
       </a>
-      <div class="mt-4">
+      <div>
         <% if current_user == user %>
           <%= button_to 'Profile', user_path(current_user), method: :get, class: 'button is-info is-small' %>
         <% else %>

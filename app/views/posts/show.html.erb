@@ -1,17 +1,17 @@
 <section class="section">
-  <%= render @post %>
-  
-  <div class="container is-flex is-justify-content-center	">
+ 
+  <div class="show__post__container">
+    <%= render @post %>
     
-    <% if current_user == @post.user %>
-    <p><%= link_to "Edit this post", edit_post_path(@post) %>|</p>
-
-    <p><%= link_to "Delete", url_for(action: :destroy), data: {turbo_method: :delete, turbo_confirm: "Are you sure? "} %>|</p>
-
-    <% end %>
-  
-    <p><%= link_to "Back to posts", posts_path %> </p>
-  
+    <div class="container is-flex is-justify-content-center	">
+    
+      <% if current_user == @post.user %>
+        <p><%= link_to "Edit this post", edit_post_path(@post) %>|</p>
+        <p><%= link_to "Delete", url_for(action: :destroy), data: {turbo_method: :delete, turbo_confirm: "Are you sure? "} %>|</p>
+      <% end %>
+    
+    
+    </div>
   </div>
 
 <%# Comments Show Section %>
@@ -50,32 +50,35 @@
 
 
 <%# Comment Form Section %>
-<div class="section">
-  <% if @post && @comment %>
-    <%= form_with model: [@post, @comment], local: true do |form| %>
-      <article class="media">
-        <figure class="media-left">
-          <%= image_tag current_user.avatar_url, class: 'avatar__image' %>
-        </figure>
-        <div class="media-content">
-          <div class="field">
-            <p class="control">
-              <%= form.label :body, hidden: true %>
-              <%= form.text_area :body, class: "textarea"%>
-            </p>
-          </div>
-          <nav class="level">
-            <div class="level-left">
-              <div class="level-item">
-                <%= form.submit "Add Comment", class: 'button is-submit' %>
-              </div>
+<div class="comment__form__container">
+  <div class="section">
+    <% if @post && @comment %>
+      <%= form_with model: [@post, @comment], local: true do |form| %>
+        <article class="media">
+          <figure class="media-left">
+            <%= image_tag current_user.avatar_url, class: 'avatar__image' %>
+          </figure>
+          <div class="media-content">
+            <div class="field">
+              <p class="control">
+                <%= form.label :body, hidden: true %>
+                <%= form.text_area :body, class: "textarea", required: true %>
+              </p>
             </div>
-  
-          </nav>
-        </div>
-      </article>
+            <nav class="level">
+              <div class="level-left">
+                <div class="level-item">
+                  <%= form.submit "Add Comment", class: 'button is-link' %>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </article>
+      <% end %>
+    <% else %>
+      <%= render flash[:alert] = "Gotta say something" %>
     <% end %>
-  <% end %>
+  </div>
 </div>
 
 </section>
