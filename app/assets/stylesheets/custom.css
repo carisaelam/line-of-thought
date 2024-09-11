@@ -86,3 +86,31 @@ h6 {
 .is-not-bulma-a {
   color: inherit;
 }
+
+.flash-message {
+  opacity: 1;
+  transition: opacity 1s ease-out;
+}
+
+.flash-message.hide {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s ease-out;
+}
+
+.flash-message {
+  animation: fadeOut 5s forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

@@ -27,8 +27,8 @@
 
   <body>
       <section class="section main__section">
-        <p class="notice has-text-success"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
+        <p class="flash-message notice has-text-success"><%= notice %></p>
+        <p class="flash-message alert has-text-danger"><%= alert %></p>
         <%= render '/shared/header' %>
         <%= yield %>
       </section>

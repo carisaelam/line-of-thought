@@ -2,13 +2,18 @@
   <%= render @post %>
   
   <div class="container is-flex is-justify-content-center	">
-    <%= link_to "Edit this post", edit_post_path(@post) %> |
-    <%= link_to "Back to posts", posts_path %> |
-    <%= link_to "Delete", url_for(action: :destroy), data: {turbo_method: :delete, turbo_confirm: "Are you sure? "} %>
+    
+    <% if current_user == @post.user %>
+    <p><%= link_to "Edit this post", edit_post_path(@post) %>|</p>
+
+    <p><%= link_to "Delete", url_for(action: :destroy), data: {turbo_method: :delete, turbo_confirm: "Are you sure? "} %>|</p>
+
+    <% end %>
+  
+    <p><%= link_to "Back to posts", posts_path %> </p>
+  
   </div>
 
-
-  
 
   <div class="section">
     <h2 class="title is-4">Comments</h2>
@@ -41,13 +46,6 @@
       <% end %>
     </div>
   </div>
-
-
-
-
-
-
-
 
 
 

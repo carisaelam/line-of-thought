@@ -24,6 +24,11 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    @user = current_user
+    unless @post.user == @user
+      flash[:alert] = "Not your post"
+      redirect_to posts_path
+    end
   end
 
   # POST /posts or /posts.json
@@ -43,30 +48,42 @@ class PostsController < ApplicationController
 
   # PATCH/PUT /posts/1 or /posts/1.json
   def update
-    respond_to do |format|
-      if @post.update(post_params)
-        format.html { redirect_to post_url(@post), notice: "Post was successfully updated." }
-        format.json { render :show, status: :ok, location: @post }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+    @user = current_user
+    if @user == @post.user
+      respond_to do |format|
+        if @post.update(post_params)
+          format.html { redirect_to post_url(@post), notice: "Post was successfully updated." }
+          format.json { render :show, status: :ok, location: @post }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: @post.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      flash[:alert] = "Not your post"
+      redirect_to posts_path
     end
   end
 
   # DELETE /posts/1 or /posts/1.json
   def destroy
     @post = Post.find(params[:id])
+    @user = current_user
     like = @post.likes.find_by(user: current_user)
     like.destroy if like
 
-    respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: [
-          turbo_stream.replace(dom_id(@post, :like_buttons), partial: "posts/like_buttons", locals: { post: @post }),
-          turbo_stream.replace("like-count", partial: "posts/like_count", locals: { post: @post })
-        ]
+    if @user == @post.user
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.replace(dom_id(@post, :like_buttons), partial: "posts/like_buttons", locals: { post: @post }),
+            turbo_stream.replace("like-count", partial: "posts/like_count", locals: { post: @post })
+          ]
+        end
       end
+    else
+      flash[:alert] = "Not your post"
+      redirect_to posts_path
     end
   end
 
