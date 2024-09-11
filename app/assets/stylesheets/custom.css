@@ -61,7 +61,7 @@ h6 {
 }
 
 #navbar div {
-  width: clamp(10rem, 50%, 40rem);
+  width: clamp(20rem, 50%, 30rem);
 }
 
 .post__card {
