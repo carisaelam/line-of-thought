@@ -10,13 +10,11 @@
         </div>
       </a>
       <div class="mt-4">
-
-        <% if current_user.following?(user) %>
-          <%= button_to 'Unfollow', user_follow_path(user.id), method: :delete, class: 'button is-danger is-small' %>
+        <% if current_user == user %>
+          <%= button_to 'Profile', user_path(current_user), method: :get, class: 'button is-info is-small' %>
         <% else %>
-          <%= button_to 'Follow', user_follow_path(user.id), method: :post, class: 'button is-link is-small' %>
-        <% end %>   
-     
+          <%= render partial: 'users/follow_buttons', locals: { user: user } %>      
+        <% end %>
       </div>
     </div>
     
