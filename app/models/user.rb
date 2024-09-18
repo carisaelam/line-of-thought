@@ -19,14 +19,16 @@ class User < ApplicationRecord
   # after_initialize :set_default_avatar_url, if: :new_record?
 
   def self.from_omniauth(auth)
-    email = auth.info.email || "default@example.com"  # Default email or handle missing email
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = email
-      user.password = Devise.friendly_token[0, 20]
-      user.full_name = auth.info.name   # Assuming you have a full_name attribute
-      user.avatar_url = auth.info.image  # Assuming you have an avatar_url attribute
-    end
+    email = auth.info.email || "default@example.com"
+    user = where(provider: auth.provider, uid: auth.uid).first_or_initialize
+    user.email = email
+    user.password = Devise.friendly_token[0, 20] if user.new_record?
+    user.full_name = auth.info.name
+    user.avatar_url = auth.info.image
+    user.save
+    user
   end
+
 
   def follow(followee)
     if self != followee
