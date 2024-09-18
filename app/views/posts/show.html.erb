@@ -24,7 +24,7 @@
         <% @post.comments.each do |comment| %>
           <% if comment.user %>
     
-          <article class="media">
+          <article class="media" id="comment_<%= comment.id %>">
             <figure class="media-left">
               <p class="image is-64x64">
                 <%= image_tag comment.user.avatar_url, class: 'avatar__image--comment' %>
@@ -38,6 +38,12 @@
                   <%= comment.body %>
                 </p>
               </div>
+
+               <% if current_user == @post.user %>
+                <p><%= link_to "Edit this comment", edit_post_comment_path(@post) %>|</p>
+                <p>  <%= link_to "Delete", post_comment_path(@post, comment), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "button is-danger" %>
+                </p>
+              <% end %>
     
             </div>
           </article>
