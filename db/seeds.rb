@@ -6,7 +6,7 @@ Post.destroy_all
 Comment.destroy_all
 Like.destroy_all
 
-example_user_email = 'example.user@example.com'
+example_user_email = 'example@example.com'
 example_user_password = 'password'
 example_user_full_name = 'Example User'
 
