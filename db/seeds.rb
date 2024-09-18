@@ -5,14 +5,19 @@ Post.destroy_all
 Comment.destroy_all
 Like.destroy_all
 
-(1..50).each do |id|
+(1..50).each do
   email = Faker::Internet.unique.email
   puts "Attempting to create user with email: #{email}"
-  User.find_or_create_by!(email: email) do |user|
-    user.full_name = Faker::Name.unique.name
-    user.password = 'password' # Devise will encrypt this
-    user.password_confirmation = 'password'
+  unless User.exists?(email: email)
+    user = User.create!(
+      email: email,
+      full_name: Faker::Name.unique.name,
+      password: 'password',
+      password_confirmation: 'password'
+    )
     puts "Created user: #{user.email}"
+  else
+    puts "User with email #{email} already exists."
   end
 end
 
