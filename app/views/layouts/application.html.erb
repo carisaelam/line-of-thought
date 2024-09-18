@@ -20,7 +20,7 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
     
-    <link rel="stylesheet" href="app/assets/stylesheets/custom.css">
+    <%= stylesheet_link_tag 'custom', media: 'all' %>
 
     <%= hotwire_livereload_tags if Rails.env.development? %>
   </head>
