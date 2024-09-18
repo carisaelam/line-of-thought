@@ -15,10 +15,12 @@
   </div>
 
 <%# Comments Show Section %>
+<% if @post.comments.exists? %>
   <div class="section">
-    <h2 class="title is-4">Comments</h2>
-    <div class="box">
-      <% if @post.comments.present? %>
+      <h2 class="title is-4">Comments</h2>
+      <div class="box">
+        
+
         <% @post.comments.each do |comment| %>
           <% if comment.user %>
     
@@ -41,11 +43,12 @@
           </article>
           <% end %>
         <% end %>
-      <% else %>
-        <p>No comments yet. Be the first to comment!</p>
-      <% end %>
+
+    
     </div>
+
   </div>
+ <% end %>
 
 
 

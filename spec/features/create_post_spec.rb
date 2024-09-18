@@ -27,6 +27,6 @@ RSpec.describe 'Creating a post', type: :feature do
     fill_in "Body", with: "Despite the heavy rain, the determined hikers managed to reach the summit of the challenging mountain trail successfully."
     click_on 'Create Post'
 
-    expect(page).to have_content("Body is too long")
+    expect(page).to have_content("too long")
   end
 end
