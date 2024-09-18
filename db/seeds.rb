@@ -1,7 +1,7 @@
 require 'faker'
 
 (1..50).each do |id|
-  User.create!(
+  User.find_or_create_by!(
     full_name: Faker::Name.unique.name,
     email: Faker::Internet.unique.email,
     password: 'password',
