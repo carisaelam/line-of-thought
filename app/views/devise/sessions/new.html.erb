@@ -1,6 +1,7 @@
 <div class="section is-flex is-justify-content-center">
   <div class="box p-6 is-flex is-justify-content-center is-flex-direction-column">
     <h2 class="title is-5 has-text-centered">Log in</h2>
+  
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="field">
         <%= f.label :email %><br />
@@ -32,6 +33,16 @@
     <% if Rails.env.production? %>
       <%= render "devise/shared/links" %>
     <% end %>
+  
+    <div class=" box is-size-7 has-text-centered  mt-4">
+      <p>Test it out without an account! </p>
+      <div class="has-text-left mt-3">
+        <p>Email: <strong>example@example.com</strong> </p>
+        <p>Password: <strong>password</strong> </p>
+      </div>
+    </div>
+
+   
   
   </div>
 </div>
