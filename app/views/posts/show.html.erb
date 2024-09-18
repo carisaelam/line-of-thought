@@ -6,8 +6,8 @@
     <div class="container is-flex is-justify-content-center	">
     
       <% if current_user == @post.user %>
-        <p><%= link_to "Edit this post", edit_post_path(@post) %>|</p>
-        <p><%= link_to "Delete", url_for(action: :destroy), data: {turbo_method: :delete, turbo_confirm: "Are you sure? "} %></p>
+        <p><%= link_to "Edit this post", edit_post_path(@post), class: "mr-2" %>|</p>
+        <p><%= link_to "Delete", url_for(action: :destroy), data: {turbo_method: :delete, turbo_confirm: "Are you sure? "}, class: "ml-2" %></p>
       <% end %>
     
     
@@ -39,10 +39,11 @@
                 </p>
               </div>
 
-               <% if current_user == @post.user %>
-                <p><%= link_to "Edit this comment", edit_post_comment_path(@post) %>|</p>
-                <p>  <%= link_to "Delete", post_comment_path(@post, comment), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "button is-danger" %>
-                </p>
+               <% if current_user == comment.user %>
+                <div class="is-flex is-size-7">
+                  <p>  <%= link_to "Delete", post_comment_path(@post, comment), data: { turbo_method: :delete, turbo_confirm: "Are you sure?"}  %>
+                  </p>
+                </div>
               <% end %>
     
             </div>

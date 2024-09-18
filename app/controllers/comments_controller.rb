@@ -38,9 +38,11 @@ class CommentsController < ApplicationController
 
   # PATCH/PUT /comments/1 or /comments/1.json
   def update
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.find(params[:id]) # Find the existing comment
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to @comment.post, notice: "Comment was successfully updated." }
+        format.html { redirect_to @post, notice: "Comment was successfully updated." }
         format.json { render :show, status: :ok, location: @comment }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -48,6 +50,7 @@ class CommentsController < ApplicationController
       end
     end
   end
+
 
   # DELETE /comments/1 or /comments/1.json
   def destroy
