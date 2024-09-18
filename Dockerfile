@@ -55,12 +55,12 @@ COPY . .
 # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/
 
-# Precompiling assets for production without requiring secret RAILS_MASTER_KEY
-RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
-
+# Precompiling assets for production with actual RAILS_MASTER_KEY
+ARG RAILS_MASTER_KEY
+ENV RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
+RUN ./bin/rails assets:precompile
 
 RUN rm -rf node_modules
-
 
 # Final stage for app image
 FROM base
