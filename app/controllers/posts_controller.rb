@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  include ActionView::RecordIdentifier
+
   before_action :authenticate_user!
   before_action :set_post, only: %i[ show edit update destroy ]
 
@@ -73,14 +75,9 @@ class PostsController < ApplicationController
     like.destroy if like
 
     if @user == @post.user
-      respond_to do |format|
-        format.turbo_stream do
-          render turbo_stream: [
-            turbo_stream.replace(dom_id(@post, :like_buttons), partial: "posts/like_buttons", locals: { post: @post }),
-            turbo_stream.replace("like-count", partial: "posts/like_count", locals: { post: @post })
-          ]
-        end
-      end
+        @post.destroy
+        redirect_to posts_path
+        flash[:notice] = "Post deleted"
     else
       flash[:alert] = "Not your post"
       redirect_to posts_path
