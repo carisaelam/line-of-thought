@@ -2,6 +2,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def github
     auth = request.env["omniauth.auth"]
     Rails.logger.debug("Omniauth Auth Data: #{auth.inspect}")
+    Rails.logger.debug("Omniauth Callback URL: #{request.original_url}")
+
 
     @user = User.from_omniauth(auth)
 

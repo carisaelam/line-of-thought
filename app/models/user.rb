@@ -19,15 +19,21 @@ class User < ApplicationRecord
   # after_initialize :set_default_avatar_url, if: :new_record?
 
   def self.from_omniauth(auth)
-    email = auth.info.email || "default@example.com"
-    user = where(provider: auth.provider, uid: auth.uid).first_or_initialize
-    user.email = email
-    user.password = Devise.friendly_token[0, 20] if user.new_record?
-    user.full_name = auth.info.name
-    user.avatar_url = auth.info.image
-    user.save
-    user
+    user = where(provider: auth.provider, uid: auth.uid).first_or_initialize do |u|
+      u.email = auth.info.email
+      u.password = Devise.friendly_token[0, 20] if u.new_record?
+      u.full_name = auth.info.name
+      u.avatar_url = auth.info.image
+    end
+
+    if user.save
+      user
+    else
+      Rails.logger.error("Failed to save user from omniauth: #{user.errors.full_messages.join(", ")}")
+      nil
+    end
   end
+
 
 
   def follow(followee)
