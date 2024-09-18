@@ -19,6 +19,9 @@ class User < ApplicationRecord
   # after_initialize :set_default_avatar_url, if: :new_record?
 
   def self.from_omniauth(auth)
+    # Log the raw auth data for debugging
+    Rails.logger.info "Auth Data: #{auth.inspect}"
+
     email = auth.info.email
     user = User.where(email: email).first_or_initialize do |u|
       u.provider = auth.provider
@@ -27,9 +30,18 @@ class User < ApplicationRecord
       u.avatar_url = auth.info.image
       u.password = Devise.friendly_token[0, 20]
     end
-    user.save if user.new_record?
+
+    # Log the user object to see what attributes are being set
+    Rails.logger.info "User Data before save: #{user.inspect}"
+
+    user.save if user.new_record? || user.changed?
+
+    # Log the user object after save to ensure it's saved correctly
+    Rails.logger.info "User Data after save: #{user.inspect}"
+
     user
   end
+
 
 
 
