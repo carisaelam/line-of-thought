@@ -29,6 +29,9 @@
 
     <% end %>
   
-    <%= render "devise/shared/links" %>
+    <% if Rails.env.production? %>
+      <%= render "devise/shared/links" %>
+    <% end %>
+  
   </div>
 </div>
