@@ -5,16 +5,11 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     @user = User.from_omniauth(auth)
 
-    if @user
-      if @user.persisted?
-        flash[:notice] = I18n.t "devise.omniauth_callbacks.success", kind: "Github"
-        sign_in_and_redirect @user, event: :authentication
-      else
-        flash[:alert] = "GitHub login failed: Email is already taken."
-        redirect_to new_user_registration_url
-      end
+    if @user.persisted?
+      flash[:notice] = I18n.t "devise.omniauth_callbacks.success", kind: "Github"
+      sign_in_and_redirect @user, event: :authentication
     else
-      flash[:alert] = "GitHub login failed: Email is already taken."
+      flash[:alert] = "GitHub login failed: #{flash[:alert]}"
       redirect_to new_user_registration_url
     end
   end

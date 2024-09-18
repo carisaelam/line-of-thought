@@ -19,23 +19,18 @@ class User < ApplicationRecord
   # after_initialize :set_default_avatar_url, if: :new_record?
 
   def self.from_omniauth(auth)
-    email = auth.info.email || "default@example.com"
-    user = where(provider: auth.provider, uid: auth.uid).first_or_initialize
-    user.email = email
-    user.password = Devise.friendly_token[0, 20] if user.new_record?
-    user.full_name = auth.info.name
-    user.avatar_url = auth.info.image
-
-    # Check if the email is taken
-    if user.email.present? && User.exists?(email: user.email) && user.new_record?
-      # Handle the case where email already exists
-      Rails.logger.error("Email #{email} is already taken.")
-      nil
-    else
-      user.save
-      user
+    email = auth.info.email
+    user = User.where(email: email).first_or_initialize do |u|
+      u.provider = auth.provider
+      u.uid = auth.uid
+      u.full_name = auth.info.name
+      u.avatar_url = auth.info.image
+      u.password = Devise.friendly_token[0, 20]
     end
+    user.save if user.new_record?
+    user
   end
+
 
 
 
