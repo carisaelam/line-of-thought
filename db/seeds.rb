@@ -1,14 +1,16 @@
 require 'faker'
 
+# Clear existing data
 User.destroy_all
 Post.destroy_all
 Comment.destroy_all
 Like.destroy_all
 
+# Create users with unique emails
 (1..50).each do
   email = Faker::Internet.unique.email
   puts "Attempting to create user with email: #{email}"
-  unless User.exists?(email: email)
+  begin
     user = User.create!(
       email: email,
       full_name: Faker::Name.unique.name,
@@ -16,19 +18,21 @@ Like.destroy_all
       password_confirmation: 'password'
     )
     puts "Created user: #{user.email}"
-  else
-    puts "User with email #{email} already exists."
+  rescue ActiveRecord::RecordInvalid => e
+    puts "Failed to create user with email #{email}: #{e.message}"
   end
 end
 
-(1..30).each do |id|
+# Create posts
+(1..30).each do
   Post.create!(
     user_id: User.pluck(:id).sample,
-    body: Faker::Hipster.sentence(word_count: rand(5-10)),
+    body: Faker::Hipster.sentence(word_count: rand(5..10)),
   )
 end
 
-(30..80).each do |id|
+# Create comments
+(30..80).each do
   Comment.create!(
     user_id: User.pluck(:id).sample,
     post_id: Post.pluck(:id).sample,
@@ -36,7 +40,8 @@ end
   )
 end
 
-(1..50).each do |id|
+# Create likes
+(1..50).each do
   Like.create!(
     user_id: User.pluck(:id).sample,
     post_id: Post.pluck(:id).sample
