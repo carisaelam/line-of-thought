@@ -33,14 +33,18 @@
     <% if Rails.env.production? %>
       <%= render "devise/shared/links" %>
     <% end %>
-  
-    <div class=" box is-size-7 has-text-centered  mt-4">
-      <p>Test it out without an account! </p>
-      <div class="has-text-left mt-3">
-        <p>Email: <strong>example@example.com</strong> </p>
-        <p>Password: <strong>password</strong> </p>
+
+    <% if Rails.env.development? %>
+      <div class=" box is-size-7 has-text-centered  mt-4">
+        <p>Test it out without an account! </p>
+        <div class="has-text-left mt-3">
+          <p>Email: <strong>example@example.com</strong> </p>
+          <p>Password: <strong>password</strong> </p>
+        </div>
       </div>
-    </div>
+    <% end %>
+  
+  
 
    
   
