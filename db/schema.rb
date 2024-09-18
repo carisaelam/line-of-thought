@@ -24,11 +24,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_08_153726) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "connections", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "follows", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followee_id"
