@@ -79,6 +79,6 @@ test:
 #
 production:
   <<: *default
-  database: meticulous-empathy
+  database: <%= ENV["PGDATABASE"] %>
   username: <%= ENV["PGUSER"] %>
   password: <%= ENV["PGPASSWORD"] %>
