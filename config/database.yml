@@ -19,7 +19,6 @@ default: &default
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
-
 development:
   <<: *default
   database: line_of_thought_development
@@ -80,6 +79,6 @@ test:
 #
 production:
   <<: *default
-  database: line_of_thought_production
-  username: line_of_thought
-  password: <%= ENV["LINE_OF_THOUGHT_DATABASE_PASSWORD"] %>
+  database: meticulous-empathy
+  username: <%= ENV["PGUSER"] %>
+  password: <%= ENV["PGPASSWORD"] %>
