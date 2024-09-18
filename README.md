@@ -95,7 +95,7 @@ Ensure you have the following installed:
 
    **Note**: If the seed file causes issues due to existing records, the `db:drop` command will delete all existing data. Adjust the seed file to handle duplicates if necessary.
 
-6. **Precompile assets** (optional, typically for production):
+6. **Precompile assets:**
 
    ```bash
    rails assets:precompile

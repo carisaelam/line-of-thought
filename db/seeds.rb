@@ -6,6 +6,23 @@ Post.destroy_all
 Comment.destroy_all
 Like.destroy_all
 
+example_user_email = 'example.user@example.com'
+example_user_password = 'password'
+example_user_full_name = 'Example User'
+
+unless User.exists?(email: example_user_email)
+  User.create!(
+    email: example_user_email,
+    full_name: example_user_full_name,
+    password: example_user_password,
+    password_confirmation: example_user_password
+  )
+  puts "Created example user: #{example_user_email}"
+else
+  puts "Example user already exists: #{example_user_email}"
+end
+
+
 # Create users with unique emails
 (1..50).each do
   email = Faker::Internet.unique.email
