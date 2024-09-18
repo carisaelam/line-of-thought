@@ -37,7 +37,7 @@ Line of Thought is a minimalist social media app where every post is a single, i
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/line-of-thought.git
+   git clone https://github.com/carisaelam/line-of-thought.git
    ```
 2. **Install dependencies:**
    ```bash
