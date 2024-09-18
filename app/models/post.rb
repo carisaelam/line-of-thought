@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  validates :body, length: { maximum: 100 }
+  validates :body, length: { maximum: 100, message: :too_long }
 
   belongs_to :user
   has_many :comments, dependent: :destroy
