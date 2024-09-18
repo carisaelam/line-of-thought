@@ -8,7 +8,10 @@
     <h3 class="mb-5 px-2 button"><%= link_to 'Your feed', following_posts_path(current_user.id) %></h3> 
     <h3 class="mb-5 px-2 button"><%= link_to 'All users', users_path %></h3>
     <h3 class="mb-5 px-2 button"><%= link_to 'Your profile', user_path(current_user.id) %></h3>
+    <h3 class="mb-5">  <%= link_to "New post", new_post_path, class: "button is-link is-small" %>
+</h3>
   </div>
+
 
   
     <% if @posts.any? %>  
