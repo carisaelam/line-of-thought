@@ -42,8 +42,11 @@ end
 
 # Create likes
 (1..50).each do
-  Like.create!(
-    user_id: User.pluck(:id).sample,
-    post_id: Post.pluck(:id).sample
+  user_id = User.pluck(:id).sample
+  post_id = Post.pluck(:id).sample
+
+  Like.find_or_create_by(
+    user_id: user_id,
+    post_id: post_id
   )
 end
