@@ -39,7 +39,7 @@ h6 {
 
 .avatar__image {
   border-radius: 100%;
-  max-width: calc(clamp(2rem, 2rem + 5vw, 5rem));
+  max-width: calc(clamp(1rem, 1rem + 5vw, 5rem));
 }
 
 .avatar__image--comment {
